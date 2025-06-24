@@ -1,25 +1,38 @@
 import React from "react";
+import { education, skills, mission, aboutDescription } from "../data/aboutData";
 function About() {
     return (
         <>
-        <div name="About" className="max-w-screen-2xl container mx-auto px-4 md:px-20 my-20 mt-24">
-            <h1 className="text-3xl font-bold mb-4">About</h1>
-            <p>I am a passionate developer with a strong background in Information Technology. With a deep curiosity for how things work and a drive to create innovative solutions, I thrive in building and improving software that makes a real impact. Whether it's writing clean, efficient code or exploring new technologies, I’m always eager to learn and take on new challenges. My IT foundation gives me a solid grasp of both development and systems, allowing me to approach problems with a well-rounded perspective.</p>
+        <div name="About" className="max-w-screen-2xl container mx-auto px-4 md:px-20 my-20 mt-24 bg-white rounded-lg shadow-lg p-8">
+            <h1 className="text-3xl font-bold mb-4 text-green-700">About</h1>
+            <p className="text-gray-800">{aboutDescription}</p>
             <br />
-            <h1 className="text-green-600 font-bold mt-4">Education & training</h1>
-            <span>
-                [B.Tech in Information Technology, 2020-2024, XYZ University, City, Country]
-            </span>
-            <h1 className="text-green-600 font-bold mt-4 ">Skills</h1>
-            <span>
-                [JavaScript, React, Node.js, Express, MongoDB, HTML, CSS, Git, Agile Methodologies]
-            </span>
-
+            <h1 className="text-green-600 font-bold mt-4 mb-2">Education & training</h1>
+            <div className="mb-2 bg-green-50 rounded p-3">
+                <div className="font-semibold text-green-800">{education.degree}</div>
+                <div className="text-green-700">{education.institute}</div>
+                <div className="text-sm text-gray-600">{education.years}</div>
+            </div>
+            <h1 className="text-green-600 font-bold mt-4 mb-2">Skills</h1>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-1 list-disc list-inside mb-0">
+                {skills.map((skill, idx) => (
+                    <li
+                        key={idx}
+                        className="font-semibold px-2 py-1 mb-1 inline-block"
+                        style={{
+                            background: "linear-gradient(to right, #bbf7d0 2%, #bbf7d0 5%, #fff 30%)",
+                            color: "#166534",
+                            borderRadius: "0.375rem"
+                        }}
+                    >
+                        {skill}
+                    </li>
+                ))}
+            </ul>
             <h1 className="text-green-600 font-bold mt-4">Mission & Goals</h1>
-            <p className="text-justify mb-20">
-                I aim to continuously improve my skills and contribute to projects that have a positive impact on society. My goal is to become a full-stack developer, mastering both front-end and back-end technologies, and to work on innovative projects that challenge my abilities and expand my knowledge.
+            <p className="text-justify mb-20 text-gray-800 bg-green-50 rounded p-3">
+                {mission}
             </p>
-
         </div>
         </>
     );

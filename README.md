@@ -1,12 +1,28 @@
-# React + Vite
+# Portfolio Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a personal portfolio web application built with React and Vite. It showcases featured projects with interactive cards, providing links to live demos and source code for each project. The design is responsive and modern, utilizing Tailwind CSS for styling.
 
-Currently, two official plugins are available:
+## Features
+- Responsive grid layout for project cards
+- Expandable/collapsible project descriptions
+- Links to live demos and source code
+- Clean and modular component structure
+- **Centralized Data Management**: All static data (profile info, skills, links, etc.) is organized in the `src/data` folder and imported into components. This makes it easy to update content without editing component logic.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- **React**: Frontend library for building user interfaces
+- **Vite**: Fast development build tool
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **React Icons**: Icon library for React
+- **React Hook Form**: For form handling (if used in contact or other sections)
+- **Axios**: For HTTP requests (if used)
+- **ESLint**: Linting and code quality
 
-## Expanding the ESLint configuration
+## Getting Started
+1. Install dependencies: `npm install`
+2. Start development server: `npm run dev`
+3. Build for production: `npm run build`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+Feel free to customize and extend this portfolio to better showcase your work!

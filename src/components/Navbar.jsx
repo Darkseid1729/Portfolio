@@ -3,6 +3,7 @@ import { IoMenu } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { useState } from 'react';
 import { Link } from 'react-scroll';
+import { profileName, profileHighlight, profileTitle } from "../data/navbarData";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -24,8 +25,8 @@ function Navbar() {
                             className="w-12 h-12 rounded-full object-cover border-2 border-gray-300"
                         />
                         <h1 className="fond-semibold text-xl cursor-pointer text-black">
-                            Aditya <span className='text-green-500 text-2xl'>I</span>
-                            <p className='text-sm'>Web Developer</p>
+                            {profileName} <span className='text-green-500 text-2xl'>{profileHighlight}</span>
+                            <p className='text-sm'>{profileTitle}</p>
                         </h1>
 
                     </div>
