@@ -4,6 +4,7 @@ import { RxCross1 } from "react-icons/rx";
 import { useState } from 'react';
 import { Link } from 'react-scroll';
 import { profileName, profileHighlight, profileTitle } from "../data/navbarData";
+import myImg from "../data/image/myImg.jpg";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -20,7 +21,7 @@ function Navbar() {
                 <div className='flex justify-between items-center h-16'>
                     <div className="flex space-x-2">
                         <img
-                            src="/myImg.jpg"
+                            src={myImg}
                             alt="Profile"
                             className="w-12 h-12 rounded-full object-cover border-2 border-gray-300"
                         />

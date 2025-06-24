@@ -4,6 +4,7 @@ import { BiLogoGmail } from "react-icons/bi";
 import { SiMongodb, SiExpress, SiReact } from "react-icons/si";
 import { ReactTyped } from "react-typed";
 import { typedStrings, homeDescription, socialLinks, workingOn } from "../data/homeData";
+import myImg from "../data/image/myImg.jpg";
 
 const iconMap = {
     FaGithub: <FaGithub />,
@@ -70,7 +71,7 @@ function Home() {
                 </div>
                 </div>
             <div className="md:w-1/2 md:ml-48 md:mt-20 mt-8 order-1">
-                <img className="rounded-full md:w-[450px] y-[450px]" src="/myImg.jpg" alt="" />
+                <img className="rounded-full md:w-[450px] y-[450px]" src={myImg} alt="" />
             </div>
             </div>
         </div>
