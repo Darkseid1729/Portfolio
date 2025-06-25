@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { IoMenu } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
-import { useState } from 'react';
 import { Link } from 'react-scroll';
 import { profileName, profileHighlight, profileTitle } from "../data/navbarData";
 import myImg from "../data/image/myImg.jpg";
+import gsap from "gsap";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -15,6 +15,45 @@ function Navbar() {
         { id: 4, text: 'Experience'},
         { id: 5, text: 'Contact' },
     ];
+
+    // Refs for desktop and mobile menu items
+    const desktopMenuRefs = useRef([]);
+    const mobileMenuRefs = useRef([]);
+
+    // GSAP animation for desktop menu
+    useEffect(() => {
+        if (desktopMenuRefs.current.length) {
+            gsap.fromTo(
+                desktopMenuRefs.current,
+                { opacity: 0, y: -20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    stagger: 0.08,
+                    ease: "power2.out"
+                }
+            );
+        }
+    }, []);
+
+    // GSAP animation for mobile menu
+    useEffect(() => {
+        if (menuOpen && mobileMenuRefs.current.length) {
+            gsap.fromTo(
+                mobileMenuRefs.current,
+                { opacity: 0, x: 30 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.4,
+                    stagger: 0.07,
+                    ease: "power2.out"
+                }
+            );
+        }
+    }, [menuOpen]);
+
     return (
         <>
             <div className='max-w-screen-2xl container mx px-4 md:px-20 shadow-md fixed top-0 left-0 right-0 bg-white z-50'>
@@ -29,21 +68,24 @@ function Navbar() {
                             {profileName} <span className='text-green-500 text-2xl'>{profileHighlight}</span>
                             <p className='text-sm'>{profileTitle}</p>
                         </h1>
-
                     </div>
-
                     {/* desktop menu */}
                     <div>
                         <ul className="hidden md:flex space-x-4 text-gray-700 font-semibold">
                             {
-                                navItems.map(({ id, text }) => (
-                                    <li className='hover:scale-105 duration-200 cursor-pointer' key={id}>
+                                navItems.map(({ id, text }, idx) => (
+                                    <li
+                                        className='hover:scale-105 duration-200 cursor-pointer'
+                                        key={id}
+                                        ref={el => desktopMenuRefs.current[idx] = el}
+                                    >
                                         <Link to={text}
                                             smooth={true}
                                             duration={500}
                                             offset={-70}
                                             className="hover:text-green-500"
-                                    >{text} </Link></li>
+                                        >{text} </Link>
+                                    </li>
                                 ))
                             }
                         </ul>
@@ -53,13 +95,16 @@ function Navbar() {
                         </div>
                     </div>
                 </div>
-
                 {/* mobile navbar */}
                 {menuOpen && (<div className='bg-white'>
                     <ul className="md:hidden flex flex-col h-screen items-center justify-center space-y-4">
                         {
-                            navItems.map(({ id, text }) => (
-                                <li className='hover:scale-105 duration-200 cursor-pointer' key={id}>
+                            navItems.map(({ id, text }, idx) => (
+                                <li
+                                    className='hover:scale-105 duration-200 cursor-pointer'
+                                    key={id}
+                                    ref={el => mobileMenuRefs.current[idx] = el}
+                                >
                                     <Link to={text}
                                         smooth={true}
                                         duration={500}
@@ -73,7 +118,6 @@ function Navbar() {
                     </ul>
                 </div>)}
             </div>
-
         </>
     );
 }

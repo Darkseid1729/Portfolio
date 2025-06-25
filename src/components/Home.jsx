@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import { SiMongodb, SiExpress, SiReact } from "react-icons/si";
 import { ReactTyped } from "react-typed";
 import { typedStrings, homeDescription, socialLinks, workingOn } from "../data/homeData";
 import myImg from "../data/image/myImg.jpg";
+import gsap from "gsap";
 
 const iconMap = {
     FaGithub: <FaGithub />,
@@ -20,6 +21,58 @@ const techIconMap = {
 };
 
 function Home() {
+    const imgRef = useRef(null);
+    const iconRefs = useRef([]);
+    const techRefs = useRef([]);
+
+    useEffect(() => {
+        if (imgRef.current) {
+            gsap.fromTo(
+                imgRef.current,
+                { opacity: 0, scale: 0.7, y: 40 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 2.5,
+                    ease: "power3.out"
+                }
+            );
+        }
+    }, []);
+
+    useEffect(() => {
+        if (iconRefs.current.length) {
+            gsap.fromTo(
+                iconRefs.current,
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    stagger: 0.1,
+                    ease: "power2.out"
+                }
+            );
+        }
+    }, []);
+
+    useEffect(() => {
+        if (techRefs.current.length) {
+            gsap.fromTo(
+                techRefs.current,
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    stagger: 0.12,
+                    ease: "power2.out"
+                }
+            );
+        }
+    }, []);
+
     return (
         <>
         <div name="Home" className="max-w-screen-2xl container mx px-4 md:px-20 my-20 mt-24">
@@ -48,6 +101,7 @@ function Home() {
                             <li
                                 key={idx}
                                 className={`text-2xl cursor-pointer duration-200 transition-transform transform hover:scale-105 ease-in-out ${link.colorClass}`}
+                                ref={el => iconRefs.current[idx] = el}
                             >
                                 {link.url ? (
                                     <a href={link.url} target="_blank" rel="noopener noreferrer">
@@ -64,14 +118,24 @@ function Home() {
                     <h1 className="text-bold">currently working on</h1>
                     <div className="flex space-x-5">
                         {workingOn.map((tech, idx) => (
-                            <span key={idx}>{techIconMap[tech.icon]}</span>
+                            <span
+                                key={idx}
+                                ref={el => techRefs.current[idx] = el}
+                            >
+                                {techIconMap[tech.icon]}
+                            </span>
                         ))}
                     </div>
                 </div>
                 </div>
                 </div>
             <div className="md:w-1/2 md:ml-48 md:mt-20 mt-8 order-1">
-                <img className="rounded-full md:w-[450px] y-[450px]" src={myImg} alt="" />
+                <img
+                    className="rounded-full md:w-[450px] y-[450px]"
+                    src={myImg}
+                    alt=""
+                    ref={imgRef}
+                />
             </div>
             </div>
         </div>
