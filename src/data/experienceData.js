@@ -7,5 +7,6 @@ export const experienceCards = [
     { id: 3, logo: "/reactjs.png", name: "React.js" },
     { id: 4, logo: "/node.png", name: "Node.js" },
     { id: 5, logo: java, name: "Java" },
-    { id: 6, logo: "/python.png", name: "Python" }
+    { id: 6, logo: "/python.png", name: "Python" },
+    
 ];
