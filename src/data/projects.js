@@ -51,7 +51,7 @@ const projects = [
     {
         id: 5,
         logos: ["/java.png"],
-        name: "Java",
+        name: "Java",~
         source: "https://github.com/openjdk/jdk",
         sourceText: "not done yet",
         run: "https://stackblitz.com/edit/expressjs-example",
