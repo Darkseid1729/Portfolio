@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 function ProjectCard({
   id,
-  logo,
-  logo2,
+  logos = [], // <-- changed from logo, logo2
   name,
   description,
   run,
@@ -18,18 +17,27 @@ function ProjectCard({
     <div
       className={`flex flex-col md:w-[295px] border-[2px] rounded-xl shadow-xl p-1 cursor-pointer hover:scale-103 transition-all duration-300 ease-in-out m-[8px] bg-white overflow-hidden ${expanded && description.length > 130 ? 'h-auto min-h-[370px]' : 'max-h-[340px] min-h-[350px]'}`}
     >
-      <div className="flex items-center space-x-2 justify-center mt-2">
-        <img src={logo}
-          alt={name}
-          className="w-[120px] h-[120px] p-1 rounded-full border-[2px] md:w-[100px] md:h-[100px]" />
-        {logo2 && (
-          <>
-            <span className="text-2xl font-bold mx-1">+</span>
-            <img src={logo2}
-              alt={name + ' secondary logo'}
-              className="w-[60px] h-[60px] p-1 rounded-full border-[2px] md:w-[50px] md:h-[50px]" />
-          </>
-        )}
+      <div className="relative flex items-center justify-center mt-2 h-[120px]">
+        {logos.map((logoSrc, idx) => {
+          const baseSize = 120;
+          const decrement = 10;
+          const size = Math.max(baseSize - idx * decrement, 40); // Minimum size 40px
+          return (
+            <img
+              key={idx}
+              src={logoSrc}
+              alt={`${name} logo ${idx + 1}`}
+              className="absolute rounded-full border-[2px]"
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${idx * 30}px`,
+                zIndex: logos.length - idx,
+                objectFit: "cover"
+              }}
+            />
+          );
+        })}
       </div>
       <div className="flex-1 flex flex-col justify-between">
         <div>
@@ -51,14 +59,26 @@ function ProjectCard({
             <a href={run} target="_blank" rel="noopener noreferrer">
               <button className="bg-blue-500 hover:bg-blue-700 active:bg-blue-600 text-white font-bold px-4 py-2 rounded cursor-pointer">{runText}</button>
             </a>
-            <a href={source} target="_blank" rel="noopener noreferrer">
-              <button className="bg-green-500 hover:bg-blue-700 active:bg-blue-600 text-white font-bold px-4 py-2 rounded cursor-pointer">{sourceText}</button>
-            </a>
+            {Array.isArray(source) ? (
+              source.map((src, idx) => (
+                <a key={idx} href={src.url} target="_blank" rel="noopener noreferrer">
+                  <button className="bg-green-500 hover:bg-blue-700 active:bg-blue-600 text-white font-bold px-4 py-2 rounded cursor-pointer">
+                    {src.text}
+                  </button>
+                </a>
+              ))
+            ) : (
+              <a href={source} target="_blank" rel="noopener noreferrer">
+                <button className="bg-green-500 hover:bg-blue-700 active:bg-blue-600 text-white font-bold px-4 py-2 rounded cursor-pointer">{sourceText}</button>
+              </a>
+            )}
           </div>
         )}
       </div>
     </div>
   );
 }
+
+
 
 export default ProjectCard;

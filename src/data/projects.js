@@ -1,8 +1,7 @@
 const projects = [
     {
         id: 1,
-        logo: "/socketIO.png",
-        logo2: "/html.png",
+        logos: ["/socketIO.png", "/html.png"],
         name: "socketIO , js and HTML",
         run: "https://rooms-and-chatting.onrender.com/",
         runText: "Run",
@@ -12,19 +11,26 @@ const projects = [
     },
     {
         id: 2,
-        logo: "/express.png",
-        logo2: "",
-        name: "Express.js",
-        source: "https://github.com/expressjs/express",
-        sourceText: "not done yet",
-        run: "https://stackblitz.com/edit/expressjs-example",
-        runText: "404",
-        description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        logos: ["/messenger.png"],
+        name: "Social Media Messenger",
+        source: [
+            { url: "https://github.com/Darkseid1729/Social-media-client", text: "Client" },
+            { url: "https://github.com/Darkseid1729/Social-media-server", text: "Server" }
+        ],
+        run: "https://social-media-adi.vercel.app/",
+        runText: "Run",
+        description: "A full-featured social media messenger app where users can sign up, connect, and chat in real time. Built with a modern tech stack for seamless messaging and social interaction."
     },
     {
         id: 3,
-        logo: "/reactjs.png",
-        logo2: "",
+        logos: [
+            "/socketIO.png",
+            "/html.png",
+            "/reactjs.png",
+            "/node.png",
+            "/java.png",
+            "/python.png"
+        ],
         name: "React.js",
         source: "https://github.com/facebook/react",
         sourceText: "not done yet",
@@ -34,8 +40,7 @@ const projects = [
     },
     {
         id: 4,
-        logo: "/node.png",
-        logo2: "",
+        logos: ["/node.png"],
         name: "Node.js",
         source: "https://github.com/nodejs/node",
         sourceText: "not done yet",
@@ -45,8 +50,7 @@ const projects = [
     },
     {
         id: 5,
-        logo: "/java.png",
-        logo2: "",
+        logos: ["/java.png"],
         name: "Java",
         source: "https://github.com/openjdk/jdk",
         sourceText: "not done yet",
@@ -56,8 +60,7 @@ const projects = [
     },
     {
         id: 6,
-        logo: "/python.png",
-        logo2: "",
+        logos: ["/python.png"],
         name: "Python",
         source: "https://github.com/python/cpython",
         sourceText: "not done yet",
